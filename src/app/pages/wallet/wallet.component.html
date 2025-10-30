@@ -62,15 +62,14 @@
         <ng-template #expandedrow let-transaction>
           <tr>
             <td colspan="4">
-              <p-panel>
-                <p-table [scrollable]="true" scrollHeight="300px" dataKey="transaction" [value]="transaction.transfers">
-                  <ng-template pTemplate="header">
+              <p-table [scrollable]="true" scrollHeight="300px" dataKey="transaction" [value]="transaction.transfers">
+                <ng-template pTemplate="header">
           <tr>
             <th style="width: 5rem"></th>
             <th>Credits </th>
             <th>Payment</th>
-            <th>Status</th>
             <th>Type</th>
+            <th>Status</th>
             <th>Time</th>
             <!-- <th></th> -->
           </tr>
@@ -87,8 +86,6 @@
                 <i class="pi pi-circle-fill text-[3px] text-muted-color"></i>
                 <span class="text-muted-color">{{ transfer.paymentTransaction.status }}</span>
               </div>
-              } @else {
-              N/A
               }
             </td>
             <td><p-tag [severity]="transferTypeText(transfer.type)">{{ transfer.type }}</p-tag></td>
@@ -97,22 +94,21 @@
           </tr>
         </ng-template>
       </p-table>
-    </p-panel>
-    </td>
-    </tr>
-    </ng-template>
-    <ng-template #caption>
-      <div class="flex justify-between items-start">
-        <div class="flex items-center gap-2">
-          <h1 class="font-semibold text-lg">Transfers</h1>
-          @if(transfers.isLoading()) {
-          <p-progress-spinner strokeWidth="3" fill="transparent" animationDuration=".5s"
-            [style]="{ width: '20px', height: '20px' }" />
-          }
+      </td>
+      </tr>
+      </ng-template>
+      <ng-template #caption>
+        <div class="flex justify-between items-start">
+          <div class="flex items-center gap-2">
+            <h1 class="font-semibold text-lg">Transfers</h1>
+            @if(transfers.isLoading()) {
+            <p-progress-spinner strokeWidth="3" fill="transparent" animationDuration=".5s"
+              [style]="{ width: '20px', height: '20px' }" />
+            }
+          </div>
         </div>
-      </div>
-    </ng-template>
-    </p-table>
+      </ng-template>
+      </p-table>
     </p-panel>
   </section>
 
