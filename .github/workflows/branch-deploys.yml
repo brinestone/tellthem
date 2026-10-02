@@ -25,30 +25,11 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
+
+      - name: Setup PNPM
+        uses: pnpm/setup@v1
         with:
-          node-version-file: package.json
-      - name: Install PNPM
-        run: npm install -g pnpm
-      - name: Get Store Path
-        id: get-store-path
-        run: echo "store-path=$(pnpm store path)\n" >> $GITHUB_OUTPUT
-      - name: Setup Cache
-        id: setup-cache
-        uses: actions/cache@v4
-        with:
-          key: ${{ runner.os }}-${{ hashFiles('**/*lock*', 'package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-${{ hashFiles('**/*lock*', 'package.json') }}
-            ${{ runner.os }}-
-          path: |
-            node_modules
-            ${{ steps.get-store-path.outputs.store-path }}
-            .netlify
-      - name: Install Dependencies 📦
-        if: steps.setup-cache.outputs.cache-hit != 'true'
-        run: pnpm i
+          cache: true
       # - name: Migrate Database Schema
       #   run: pnpm migrate.staging
       - name: Build ⚙️ & Deploy ⬆️

@@ -1,8 +1,12 @@
-ignoredBuiltDependencies:
-  - nx
+allowBuilds:
+  "@parcel/watcher": true
+  esbuild: true
+  lmdb: true
+  msgpackr-extract: true
+  nx: false
 
-onlyBuiltDependencies:
-  - '@parcel/watcher'
-  - esbuild
-  - lmdb
-  - msgpackr-extract
+supportedArchitectures:
+  cpu:
+    - current
+  os:
+    - current
